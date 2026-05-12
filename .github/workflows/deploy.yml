@@ -43,6 +43,9 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          
+      - name: Force public npm registry
+        run: npm config set registry https://registry.npmjs.org/
 
       - name: Install dependencies with dev packages
         env:
