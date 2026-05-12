@@ -43,7 +43,12 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          
+
+      - name: Fix registry in package-lock.json
+        run: |
+          sed -i 's|https://packages.applied-caas-gateway1.internal.api.openai.org/artifactory/api/npm/npm-public/|https://registry.npmjs.org/|g' package-lock.json
+          echo "Registry URLs after fix:"
+          grep -c "registry.npmjs.org" package-lock.json
       - name: Force public npm registry
         run: npm config set registry https://registry.npmjs.org/
 
